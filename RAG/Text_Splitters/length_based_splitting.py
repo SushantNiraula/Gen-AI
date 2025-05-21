@@ -1,0 +1,2 @@
+##  In length_based_splitting.py, we define a class that splits text into chunks based on a maximum length.
+##  This is useful for processing large documents or datasets where we want to limit the size of each chunk for analysis or modeling.
