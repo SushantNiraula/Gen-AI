@@ -1,7 +1,7 @@
-##  In length_based_splitting.py, we define a class that splits text into chunks based on a maximum length.
-##  This is useful for processing large documents or datasets where we want to limit the size of each chunk for analysis or modeling.
-from langchain.text_splitter import CharacterTextSplitter
-from langchain_community.document_loaders import PyPDFLoader
+## Text are always structured in a way.
+## we have seprates like \n\n for paragraph, \n for new line, " " for spaces(words), "" for nothing i.e character splitting.
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+
 text='''
 Nepal,[a] officially the Federal Democratic Republic of Nepal,[b] is a landlocked country in South Asia. It is mainly situated in the Himalayas, but also includes parts of the Indo-Gangetic Plain. It borders the Tibet Autonomous Region of China to the north, and India to the south, east, and west, while it is narrowly separated from Bangladesh by the Siliguri Corridor, and from Bhutan by the Indian state of Sikkim. Nepal has a diverse geography, including fertile plains, subalpine forested hills, and eight of the world's ten tallest mountains, including Mount Everest, the highest point on Earth. Kathmandu is the nation's capital and its largest city. Nepal is a multi-ethnic, multi-lingual, multi-religious, and multi-cultural state, with Nepali as the official language.
 
@@ -9,19 +9,11 @@ The name "Nepal" is first recorded in texts from the Vedic period of the Indian 
 
 The Constitution of Nepal, adopted in 2015, affirms the country as a federal parliamentary republic divided into seven provinces. Nepal was admitted to the United Nations in 1955, and friendship treaties were signed with India in 1950 and China in 1960. Nepal hosts the permanent secretariat of the South Asian Association for Regional Cooperation (SAARC), of which it is a founding member. Nepal is also a member of the Non-Aligned Movement and the Bay of Bengal Initiative.
 '''
-splitter= CharacterTextSplitter(
-    chunk_size= 100,
-    chunk_overlap= 0,
-    separator=''
-    )
 
-loader= PyPDFLoader('../Documet_Loaders/books/report_main.pdf')
-docs= loader.load()
+splitter=RecursiveCharacterTextSplitter(
+    chunk_size=100,
+    chunk_overlap=0,
 
-# result= splitter.split_text(text)
-# print(len(result))
-
-result= splitter.split_documents(docs)
-print(result[0].page_content)
-## chunk overlap is 0, so the first chunk will be the first 100 characters of the text
-## chunk_overlap means 
+)
+result=splitter.split_text(text)
+print(result[1])

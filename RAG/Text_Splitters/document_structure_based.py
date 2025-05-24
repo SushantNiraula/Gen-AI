@@ -1,0 +1,1 @@
+## If we are working on a document that is not in plain text.
